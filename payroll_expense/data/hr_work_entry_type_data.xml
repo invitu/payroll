@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="work_entry_type_expense" model="hr.work.entry.type">
+        <field name="name">Expense Reimbursement</field>
+        <field name="code">EXP_REIMB</field>
+    </record>
+</odoo>

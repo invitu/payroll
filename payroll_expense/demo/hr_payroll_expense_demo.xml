@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_salary_rule_exp_reimb" model="hr.salary.rule">
+        <field name="name">Expense Reimbursement</field>
+        <field name="code">EXP_REIMB</field>
+        <field name="sequence">25</field>
+        <field name="category_id" ref="payroll.ALW" />
+        <field name="condition_select">python</field>
+        <field
+            name="condition_python"
+        >result = bool(inputs.EXP_REIMB and inputs.EXP_REIMB.amount)</field>
+        <field name="amount_select">code</field>
+        <field
+            name="amount_python_compute"
+        >result = inputs.EXP_REIMB and inputs.EXP_REIMB.amount or 0.0</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field
+            name="note"
+        >Demo rule consuming the EXP_REIMB input fed by payroll_expense.get_inputs(). Local payroll modules (l10n_*) define their own production rule.</field>
+    </record>
+
+    <record id="payroll.structure_001" model="hr.payroll.structure">
+        <field
+            name="rule_ids"
+            eval="[(4, ref('payroll_expense.hr_salary_rule_exp_reimb'))]"
+        />
+    </record>
+</odoo>
